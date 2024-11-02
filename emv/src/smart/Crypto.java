@@ -253,17 +253,17 @@ public class Crypto {
 		// if (cid == (byte) 0x90) {
 		if (true) {
 			response[offset] = (byte) 0x77; // Tag for Format 2 cryptogram
-			response[(short) offset + 1] = (byte) 0x00; // Base Length
+			response[(short) (offset + 1)] = (byte) 0x00; // Base Length
 
 			// 1 byte CID, the type of AC returned - TAG 9F27 length 01
-			response[(short) offset + 1] = (byte) (response[(short) offset + 1] + (byte) 4); // Base
+			response[(short) (offset + 1)] = (byte) (response[(short) (offset + 1)] + (byte) 4); // Base
 																								// Length
 			Util.setShort(response, (short) (offset + 2), (short) 0x9F27); // Tag
 			response[(short) (offset + 4)] = (byte) 0x01; // Length
 			response[(short) (offset + 5)] = cid; // Value
 
 			// 2 byte ATC - Tag 9F36 length 02
-			response[(short) offset + 1] = (byte) (response[(short) offset + 1] + (byte) 5); // Base
+			response[(short) (offset + 1)] = (byte) (response[(short) (offset + 1)] + (byte) 5); // Base
 																								// Length
 			Util.setShort(response, (short) (offset + 6), (short) 0x9F36); // Tag
 			response[(short) (offset + 8)] = (byte) 0x02; // Length
@@ -271,7 +271,7 @@ public class Crypto {
 					theApplet.protocolState.getATC()); // Value
 
 			// the AC itself - Tag 9F26 - length 08
-			response[(short) offset + 1] = (byte) (response[(short) offset + 1] + (byte) 11); // Base
+			response[(short) (offset + 1)] = (byte) (response[(short) (offset + 1)] + (byte) 11); // Base
 																								// Length
 			Util.setShort(response, (short) (offset + 11), (short) 0x9F26); // Tag
 			response[(short) (offset + 13)] = (byte) 0x08; // Length
@@ -283,7 +283,7 @@ public class Crypto {
 				response[(short) (offset + 24)] = (byte) iad.length; // Length
 				Util.arrayCopy(iad, (short) 0, response, (short) (offset + 25),
 						(short) iad.length);
-				response[(short) offset + 1] = (byte) (response[(short) offset + 1]
+				response[(short) (offset + 1)] = (byte) (response[(short) (offset + 1)]
 						+ (byte) 0x03 + (byte) iad.length); // Base Length
 			} else {
 				if (replicate_iad == true) {
@@ -291,7 +291,7 @@ public class Crypto {
 					response[(short) (offset + 24)] = (byte) replicated_iad_length; // Length
 					Util.arrayCopy(replicated_iad, (short) 0, response,
 							(short) (offset + 25), replicated_iad_length);
-					response[(short) offset + 1] = (byte) (response[(short) offset + 1]
+					response[(short) (offset + 1)] = (byte) (response[(short) (offset + 1)]
 							+ (byte) 0x03 + (byte) replicated_iad_length); // Base
 																			// Length
 				} else {
@@ -299,7 +299,7 @@ public class Crypto {
 					response[(short) (offset + 24)] = (byte) 0x12; // Length
 					Util.arrayFillNonAtomic(response, (short) (offset + 25),
 							(short) 18, (byte) 0x0);
-					response[(short) offset + 1] = (byte) (response[(short) offset + 1]
+					response[(short) (offset + 1)] = (byte) (response[(short) (offset + 1)]
 							+ (byte) 0x03 + (byte) 18); // Base Length
 				}
 			}

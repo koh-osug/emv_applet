@@ -32,7 +32,7 @@ public class Log {
 		}
 
 		// Prepare the message to be inserted atomically
-		byte[] entry = new byte[apdu_size + 1]; // Extra byte for the length
+		byte[] entry = new byte[(short)(apdu_size + 1)]; // Extra byte for the length
 		entry[0] = (byte) apdu_size;
 		Util.arrayCopy(buffer, (short) 0, entry, (short) 1, apdu_size);
 

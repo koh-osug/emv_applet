@@ -18,8 +18,13 @@ This applet was stitched using source code from all over the internet and a lot 
 
 # Building
 
-This applet must be built using a very ancient version of Eclipse (INDIGO SR2 3.7.2) and JCOP Tools from IBM (Google is your friend for this one) since I didn't have access to newer jcop cards while testing this.
+~~~shell
+docker build -t emv_applet_builder .
+docker run --rm -v $(pwd)/output:/output emv_applet_builder
+~~~
+
+The .cap file should be in the `output` directory.
 
 # Disclaimer
 
-Use this applet at your own risk. Im not responsible for anything you do with it.
+Use this applet at your own risk. I'm not responsible for anything you do with it.

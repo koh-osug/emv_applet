@@ -162,6 +162,7 @@ public class Emv extends Applet {
 			break;
 		case INS_DISABLE_IAD_REP:
 			crypto.disableIadReplication();
+			break;
 		case INS_CLEAR_LOG:
 			log.clear();
 			break;

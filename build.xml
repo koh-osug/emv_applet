@@ -1,0 +1,20 @@
+<project name="EMVApplet" default="build" basedir=".">
+    <!-- Set JavaCard SDK and output directory -->
+    <property name="jc.home" location="sdks/jc320v24.1_kit/"/>
+    <property name="out.dir" location="build"/>
+
+    <!-- JavaCard applet AIDs -->
+    <property name="applet.aid" value="A0000000032010"/>
+
+    <!-- Define target to build the CAP file -->
+    <target name="build" description="Build JavaCard Applet">
+        <mkdir dir="${out.dir}"/>
+        <get src="https://github.com/martinpaljak/ant-javacard/releases/latest/download/ant-javacard.jar" dest="." skipexisting="true"/>
+        <taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="ant-javacard.jar"/>
+        <javacard jckit="${jc.home}">
+            <cap sources="emv/src" version="0.1" output="${out.dir}/emv.cap">
+               <applet class="smart.Emv" aid="${applet.aid}"/>
+            </cap>
+        </javacard>
+    </target>
+</project>
